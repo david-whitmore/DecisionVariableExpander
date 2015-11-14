@@ -16,7 +16,7 @@ class Config {
     private List<DecisionVariable> variables = newArrayList();
     private String outputTemplate = "";
 
-    @XmlElement
+    @XmlElement(name = "variable")
     public List<DecisionVariable> getVariables() {
         return variables;
     }

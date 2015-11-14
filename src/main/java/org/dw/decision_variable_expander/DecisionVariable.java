@@ -19,7 +19,7 @@ class DecisionVariable {
         this.id = id;
     }
 
-    @XmlElement
+    @XmlElement(name = "value")
     public List<String> getValues() {
         return values;
     }
