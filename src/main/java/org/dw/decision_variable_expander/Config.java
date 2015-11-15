@@ -14,7 +14,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 class Config {
     private List<DecisionVariable> variables = newArrayList();
-    private String outputTemplate = "";
 
     @XmlElement(name = "variable")
     public List<DecisionVariable> getVariables() {
@@ -23,14 +22,5 @@ class Config {
 
     public void setVariables(List<DecisionVariable> variables) {
         this.variables = variables;
-    }
-
-    @XmlElement
-    public String getOutputTemplate() {
-        return outputTemplate;
-    }
-
-    public void setOutputTemplate(String outputTemplate) {
-        this.outputTemplate = outputTemplate;
     }
 }
