@@ -1,7 +1,9 @@
 package org.dw.decision_variable_expander;
 
+import static com.google.common.collect.Lists.newArrayList;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.empty;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 import java.io.ByteArrayInputStream;
@@ -50,8 +52,7 @@ public class ConfigReaderTest {
 
         assertThat(variables.size(), is(1));
         assertThat(variables.get(0).getId(), is("isEmpty"));
-        assertThat(variables.get(0).getValues().size(), is(1));
-        assertThat(variables.get(0).getValues().get(0), is("true"));
+        assertEquals(newArrayList("true"), variables.get(0).getValues());
     }
 
     @Test
@@ -64,8 +65,7 @@ public class ConfigReaderTest {
 
         assertThat(variables.size(), is(1));
         assertThat(variables.get(0).getId(), is("isEmpty"));
-        assertThat(variables.get(0).getValues().get(0), is("true"));
-        assertThat(variables.get(0).getValues().get(1), is("false"));
+        assertEquals(newArrayList("true", "false"), variables.get(0).getValues());
     }
 
     @Test

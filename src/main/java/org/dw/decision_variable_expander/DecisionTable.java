@@ -4,8 +4,6 @@ import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.collect.Sets.newTreeSet;
 
 import java.io.IOException;
-import java.io.OutputStream;
-import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Set;
 
@@ -32,7 +30,7 @@ class DecisionTable {
         this.variables = variables;
     }
 
-    public void outputAsCsv(OutputStream out, char delimiter) throws IOException {
+    public void outputAsCsv(CsvWriter writer) throws IOException {
         List<Set<String>> sets = newArrayList();
 
         for (DecisionVariable var : variables) {
@@ -42,14 +40,9 @@ class DecisionTable {
         }
 
         Set<List<String>> rows = Sets.cartesianProduct(sets);
-        CsvWriter writer = new CsvWriter(out, delimiter, Charset.forName("utf-8"));
 
-        try {
-            writeColumnHeadings(writer);
-            writeRows(writer, rows);
-        } finally {
-            writer.close();
-        }
+        writeColumnHeadings(writer);
+        writeRows(writer, rows);
     }
 
     private void writeColumnHeadings(CsvWriter writer) throws IOException {
@@ -74,23 +67,5 @@ class DecisionTable {
         String[] rowAsArray = (String[]) row.toArray(new String[row.size()]);
 
         writer.writeRecord(rowAsArray);
-    }
-
-    public static void main(String[] args) throws IOException {
-        DecisionTable table = new DecisionTable();
-        DecisionVariable var1 = new DecisionVariable();
-
-        var1.setId("isEmpty");
-        var1.setValues(newArrayList("true", "false"));
-
-        DecisionVariable var2 = new DecisionVariable();
-
-        var2.setId("charset");
-        var2.setValues(newArrayList("ascii", "utf-8", "latin-1"));
-
-        table.getVariables().add(var1);
-        table.getVariables().add(var2);
-
-        table.outputAsCsv(System.out, ',');
     }
 }
