@@ -84,6 +84,25 @@ public class DecisionTableTest {
         assertThat(out.toString(), is(expected));
     }
 
+    @Test
+    public void outputAsCsv_manyDecisionVariablesAndCommaDelimiter() throws IOException {
+        DecisionVariable var1 = createDecisionVariable("decision variable 1", "true", "false");
+        DecisionVariable var2 = createDecisionVariable("decision variable 2", "3", "1", "2");
+        char delimiter = ',';
+        Writer out = new StringWriter();
+
+        writer = createWriter(out, delimiter);
+        sut.setVariables(newArrayList(var1, var2));
+        sut.outputAsCsv(writer);
+
+        String expected = "decision variable 1,decision variable 2" + System.lineSeparator() + "false,1"
+                + System.lineSeparator() + "false,2" + System.lineSeparator() + "false,3" + System.lineSeparator()
+                + "true,1" + System.lineSeparator() + "true,2" + System.lineSeparator() + "true,3"
+                + System.lineSeparator();
+
+        assertThat(out.toString(), is(expected));
+    }
+
     private DecisionVariable createDecisionVariable(String id, String... values) {
         DecisionVariable var = new DecisionVariable();
 
