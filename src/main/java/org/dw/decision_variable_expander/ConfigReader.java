@@ -7,10 +7,10 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
 class ConfigReader {
-    Config read(InputStream in) throws JAXBException {
-        JAXBContext context = JAXBContext.newInstance(Config.class);
+    DecisionTable read(InputStream in) throws JAXBException {
+        JAXBContext context = JAXBContext.newInstance(DecisionTable.class);
         Unmarshaller unmarshaller = context.createUnmarshaller();
 
-        return (Config) unmarshaller.unmarshal(in);
+        return (DecisionTable) unmarshaller.unmarshal(in);
     }
 }

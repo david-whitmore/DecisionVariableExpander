@@ -24,7 +24,7 @@ public class ConfigReaderTest {
     @Test
     public void parseConfig_noDecisionVariables() throws UnsupportedEncodingException, IOException, JAXBException {
         String input = XML_DECLARATION + "<config></config>";
-        Config config = readFromString(input);
+        DecisionTable config = readFromString(input);
 
         assertThat(config.getVariables(), is(empty()));
     }
@@ -33,7 +33,7 @@ public class ConfigReaderTest {
     public void parseConfig_oneDecisionVariableWithNoValues() throws UnsupportedEncodingException, IOException,
             JAXBException {
         String input = XML_DECLARATION + "<config>" + "<variable><id>isEmpty</id></variable>" + "</config>";
-        Config config = readFromString(input);
+        DecisionTable config = readFromString(input);
         List<DecisionVariable> variables = config.getVariables();
 
         assertThat(variables.size(), is(1));
@@ -45,7 +45,7 @@ public class ConfigReaderTest {
             JAXBException {
         String input = XML_DECLARATION + "<config>" + "<variable><id>isEmpty</id><value>true</value></variable>"
                 + "</config>";
-        Config config = readFromString(input);
+        DecisionTable config = readFromString(input);
         List<DecisionVariable> variables = config.getVariables();
 
         assertThat(variables.size(), is(1));
@@ -59,7 +59,7 @@ public class ConfigReaderTest {
             JAXBException {
         String input = XML_DECLARATION + "<config>"
                 + "<variable><id>isEmpty</id><value>true</value><value>false</value></variable>" + "</config>";
-        Config config = readFromString(input);
+        DecisionTable config = readFromString(input);
         List<DecisionVariable> variables = config.getVariables();
 
         assertThat(variables.size(), is(1));
@@ -72,7 +72,7 @@ public class ConfigReaderTest {
     public void parseConfig_manyDecisionVariables() throws UnsupportedEncodingException, IOException, JAXBException {
         String input = XML_DECLARATION + "<config>" + "<variable><id>isEmpty</id></variable>"
                 + "<variable><id>containsUtf8</id></variable>" + "</config>";
-        Config config = readFromString(input);
+        DecisionTable config = readFromString(input);
         List<DecisionVariable> variables = config.getVariables();
 
         assertThat(variables.size(), is(2));
@@ -80,7 +80,7 @@ public class ConfigReaderTest {
         assertThat(variables.get(1).getId(), is("containsUtf8"));
     }
 
-    private Config readFromString(String input) throws UnsupportedEncodingException, IOException, JAXBException {
+    private DecisionTable readFromString(String input) throws UnsupportedEncodingException, IOException, JAXBException {
         try (ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes("utf-8"))) {
             return sut.read(in);
         }
