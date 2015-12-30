@@ -1,7 +1,7 @@
 package org.dw.decision_variable_expander;
 
 import static com.google.common.collect.Lists.newArrayList;
-import static com.google.common.collect.Sets.newHashSet;
+import static com.google.common.collect.Sets.newTreeSet;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -36,7 +36,7 @@ class DecisionTable {
         List<Set<String>> sets = newArrayList();
 
         for (DecisionVariable var : variables) {
-            Set<String> values = newHashSet(var.getValues());
+            Set<String> values = newTreeSet(var.getValues());
 
             sets.add(values);
         }
