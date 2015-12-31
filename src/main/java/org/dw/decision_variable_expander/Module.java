@@ -7,6 +7,7 @@ import javax.xml.bind.Unmarshaller;
 
 import com.google.inject.AbstractModule;
 
+/** Guice configuration for the application. */
 class Module extends AbstractModule {
     private static final String DEFAULT_CHARSET = "UTF-8";
 
