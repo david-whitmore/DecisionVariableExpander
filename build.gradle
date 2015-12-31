@@ -1,4 +1,5 @@
 apply plugin: 'java'
+apply plugin: 'com.github.johnrengelman.shadow'
 apply plugin: 'eclipse'
 
 sourceCompatibility = 1.7
@@ -6,6 +7,13 @@ targetCompatibility = 1.7
 
 repositories {
     mavenCentral()
+}
+
+buildscript {
+  repositories { jcenter() }
+  dependencies {
+    classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.2'
+  }
 }
 
 dependencies {
