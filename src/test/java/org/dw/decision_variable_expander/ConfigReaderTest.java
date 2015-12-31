@@ -11,8 +11,11 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
+import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
@@ -21,7 +24,13 @@ import org.mockito.runners.MockitoJUnitRunner;
 public class ConfigReaderTest {
     private static final String XML_DECLARATION = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
 
-    private final ConfigReader sut = new ConfigReader();
+    private ConfigReader sut;
+
+    @Before
+    public void setUp() throws JAXBException {
+        Unmarshaller unmarshaller = (Unmarshaller) JAXBContext.newInstance(ConfigReader.class);
+        sut = new ConfigReader(unmarshaller);
+    }
 
     @Test
     public void parseConfig_noDecisionVariables() throws UnsupportedEncodingException, IOException, JAXBException {

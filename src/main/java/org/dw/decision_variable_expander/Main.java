@@ -2,6 +2,7 @@ package org.dw.decision_variable_expander;
 
 import java.io.IOException;
 
+import javax.inject.Inject;
 import javax.xml.bind.JAXBException;
 
 import com.csvreader.CsvWriter;
@@ -13,6 +14,7 @@ public class Main {
     private final Provider<ConfigReader> readerFactory;
     private final Provider<CsvWriter> writerFactory;
 
+    @Inject
     public Main(Provider<ConfigReader> readerFactory, Provider<CsvWriter> writerFactory) {
         this.readerFactory = readerFactory;
         this.writerFactory = writerFactory;
