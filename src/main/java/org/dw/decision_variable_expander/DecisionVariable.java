@@ -7,6 +7,10 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ * A decision variable has an id (which is used as the column heading in the
+ * final decision table), and several values.
+ */
 @XmlRootElement
 class DecisionVariable {
     private String id;
