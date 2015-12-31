@@ -1,17 +1,15 @@
 package org.dw.decision_variable_expander;
 
 import static com.google.common.collect.Lists.newArrayList;
-import static com.google.common.collect.Sets.newTreeSet;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Set;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.csvreader.CsvWriter;
-import com.google.common.collect.Sets;
+import com.google.common.collect.Lists;
 
 /**
  * Defines the output of the tool: a list of decision-variables (with their
@@ -31,15 +29,15 @@ class DecisionTable {
     }
 
     public void outputAsCsv(CsvWriter writer) throws IOException {
-        List<Set<String>> sets = newArrayList();
+        List<List<String>> sets = newArrayList();
 
         for (DecisionVariable var : variables) {
-            Set<String> values = newTreeSet(var.getValues());
+            List<String> values = newArrayList(var.getValues());
 
             sets.add(values);
         }
 
-        Set<List<String>> rows = Sets.cartesianProduct(sets);
+        List<List<String>> rows = Lists.cartesianProduct(sets);
 
         writeColumnHeadings(writer);
         writeRows(writer, rows);
@@ -57,7 +55,7 @@ class DecisionTable {
         writer.writeRecord(headingsAsArray);
     }
 
-    private void writeRows(CsvWriter writer, Set<List<String>> rows) throws IOException {
+    private void writeRows(CsvWriter writer, List<List<String>> rows) throws IOException {
         for (List<String> row : rows) {
             writeRow(writer, row);
         }

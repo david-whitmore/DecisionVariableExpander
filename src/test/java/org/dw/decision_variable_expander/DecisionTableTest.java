@@ -78,7 +78,7 @@ public class DecisionTableTest {
         sut.setVariables(newArrayList(var));
         sut.outputAsCsv(writer);
 
-        String expected = "decision variable 1" + System.lineSeparator() + "false" + System.lineSeparator() + "true"
+        String expected = "decision variable 1" + System.lineSeparator() + "true" + System.lineSeparator() + "false"
                 + System.lineSeparator();
 
         assertThat(out.toString(), is(expected));
@@ -95,9 +95,9 @@ public class DecisionTableTest {
         sut.setVariables(newArrayList(var1, var2));
         sut.outputAsCsv(writer);
 
-        String expected = "decision variable 1,decision variable 2" + System.lineSeparator() + "false,1"
-                + System.lineSeparator() + "false,2" + System.lineSeparator() + "false,3" + System.lineSeparator()
-                + "true,1" + System.lineSeparator() + "true,2" + System.lineSeparator() + "true,3"
+        String expected = "decision variable 1,decision variable 2" + System.lineSeparator() + "true,3"
+                + System.lineSeparator() + "true,1" + System.lineSeparator() + "true,2" + System.lineSeparator()
+                + "false,3" + System.lineSeparator() + "false,1" + System.lineSeparator() + "false,2"
                 + System.lineSeparator();
 
         assertThat(out.toString(), is(expected));
