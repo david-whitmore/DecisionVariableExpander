@@ -28,7 +28,7 @@ public class ConfigReaderTest {
 
     @Before
     public void setUp() throws JAXBException {
-        Unmarshaller unmarshaller = (Unmarshaller) JAXBContext.newInstance(ConfigReader.class);
+        Unmarshaller unmarshaller = JAXBContext.newInstance(DecisionTable.class).createUnmarshaller();
         sut = new ConfigReader(unmarshaller);
     }
 
