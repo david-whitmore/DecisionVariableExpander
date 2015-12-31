@@ -34,15 +34,15 @@ class DecisionTable {
     }
 
     private List<List<String>> calculateRows() {
-        List<List<String>> sets = newArrayList();
+        List<List<String>> decisionVarValues = newArrayList();
 
         for (DecisionVariable var : variables) {
             List<String> values = newArrayList(var.getValues());
 
-            sets.add(values);
+            decisionVarValues.add(values);
         }
 
-        return Lists.cartesianProduct(sets);
+        return Lists.cartesianProduct(decisionVarValues);
     }
 
     private void writeColumnHeadings(CsvWriter writer) throws IOException {
