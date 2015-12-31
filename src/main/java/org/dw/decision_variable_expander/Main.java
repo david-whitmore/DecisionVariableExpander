@@ -12,6 +12,11 @@ import com.csvreader.CsvWriter;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
+/**
+ * Main entrypoint that reads config from standard input, and writes the
+ * corresponding decision-table in CSV format to standard output. Uses Guice
+ * behind the scenes.
+ */
 public class Main {
     private final ConfigReader configReader;
     private final CsvWriterFactory writerFactory;
