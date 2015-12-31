@@ -1,6 +1,9 @@
 package org.dw.decision_variable_expander;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.charset.Charset;
 
 import javax.inject.Inject;
 import javax.xml.bind.JAXBException;
@@ -8,22 +11,44 @@ import javax.xml.bind.JAXBException;
 import com.csvreader.CsvWriter;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import com.google.inject.Provider;
 
 public class Main {
-    private final Provider<ConfigReader> readerFactory;
-    private final Provider<CsvWriter> writerFactory;
+    private final ConfigReader configReader;
+    private final CsvWriterFactory writerFactory;
+    private final Charset charset;
 
     @Inject
-    public Main(Provider<ConfigReader> readerFactory, Provider<CsvWriter> writerFactory) {
-        this.readerFactory = readerFactory;
+    Main(ConfigReader configReader, CsvWriterFactory writerFactory, Charset charset) {
+        this.configReader = configReader;
         this.writerFactory = writerFactory;
+        this.charset = charset;
     }
 
     private void outputAsCsv() throws JAXBException, IOException {
-        DecisionTable decisionTable = readerFactory.get().read(System.in);
+        DecisionTable decisionTable = readConfig();
+        CsvWriter csvWriter = null;
 
-        decisionTable.outputAsCsv(writerFactory.get());
+        try {
+            csvWriter = createCsvWriter();
+            decisionTable.outputAsCsv(csvWriter);
+        } finally {
+            if (csvWriter != null) {
+                csvWriter.close();
+            }
+        }
+    }
+
+    private CsvWriter createCsvWriter() {
+        OutputStream outStream = System.out;
+        char delimiter = ',';
+
+        return writerFactory.createInstance(outStream, delimiter, charset);
+    }
+
+    private DecisionTable readConfig() throws JAXBException {
+        InputStream inStream = System.in;
+        DecisionTable decisionTable = configReader.read(inStream);
+        return decisionTable;
     }
 
     public static void main(String[] args) throws JAXBException, IOException {
