@@ -7,6 +7,10 @@ import javax.xml.bind.Unmarshaller;
 
 import com.google.inject.Provider;
 
+/**
+ * Used by Guice to create Unmarshaller instances as necessary. See also the
+ * configuration in the Module class.
+ */
 class UnmarshallerProvider implements Provider<Unmarshaller> {
     private final JAXBContext context;
 
