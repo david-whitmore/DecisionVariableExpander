@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <variable>
+        <id>is empty</id>
+        <value>true</value>
+        <value>false</value>
+    </variable>
+    <variable>
+        <id>charset</id>
+        <value>utf-8</value>
+        <value>latin-1</value>
+        <value>wingdings</value>
+    </variable>    
+</config>
