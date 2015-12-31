@@ -12,8 +12,9 @@ import com.csvreader.CsvWriter;
 import com.google.common.collect.Lists;
 
 /**
- * Defines the output of the tool: a list of decision-variables (with their
- * associated values) and a template that defines the output.
+ * Acts as config for outputting a decision table. The main method is the
+ * 'outputAsCsv()' method, which effectively calculates the cartesian product of
+ * the decision variable values, and outputs it as a corresponding CSV file.
  */
 @XmlRootElement(name = "config")
 class DecisionTable {
