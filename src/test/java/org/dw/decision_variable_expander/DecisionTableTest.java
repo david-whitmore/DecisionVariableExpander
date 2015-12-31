@@ -11,17 +11,12 @@ import java.util.Arrays;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
 
 import com.csvreader.CsvWriter;
 
-@RunWith(MockitoJUnitRunner.class)
 public class DecisionTableTest {
     private DecisionTable sut;
 
-    @Mock
     private CsvWriter writer;
 
     @Before
