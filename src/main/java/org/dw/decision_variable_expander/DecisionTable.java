@@ -29,6 +29,11 @@ class DecisionTable {
     }
 
     public void outputAsCsv(CsvWriter writer) throws IOException {
+        writeColumnHeadings(writer);
+        writeRows(writer, calculateRows());
+    }
+
+    private List<List<String>> calculateRows() {
         List<List<String>> sets = newArrayList();
 
         for (DecisionVariable var : variables) {
@@ -37,10 +42,7 @@ class DecisionTable {
             sets.add(values);
         }
 
-        List<List<String>> rows = Lists.cartesianProduct(sets);
-
-        writeColumnHeadings(writer);
-        writeRows(writer, rows);
+        return Lists.cartesianProduct(sets);
     }
 
     private void writeColumnHeadings(CsvWriter writer) throws IOException {
