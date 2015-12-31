@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <variable>
+        <id>Number of decision variables</id>
+        <value>0</value>
+        <value>1</value>
+        <value>>1</value>
+    </variable>
+    <variable>
+        <id>Number of values per decision variable</id>
+        <value>0</value>
+        <value>1</value>
+        <value>>1</value>
+    </variable>    
+</config>
