@@ -1,5 +1,9 @@
 package org.dw.decision_variable_expander;
 
+/**
+ * Thrown to indicate there was an exception when calling the get() method of a
+ * Guice Provider implementation.
+ */
 class ProviderException extends RuntimeException {
     private static final long serialVersionUID = 1L;
 
