@@ -52,8 +52,8 @@ public class Main {
 
     private DecisionTable readConfig() throws JAXBException {
         InputStream inStream = System.in;
-        DecisionTable decisionTable = configReader.read(inStream);
-        return decisionTable;
+
+        return configReader.read(inStream);
     }
 
     public static void main(String[] args) throws JAXBException, IOException {

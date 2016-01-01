@@ -58,13 +58,13 @@ class DecisionTable {
         writer.writeRecord(headingsAsArray);
     }
 
-    private void writeRows(CsvWriter writer, List<List<String>> rows) throws IOException {
+    private static void writeRows(CsvWriter writer, List<List<String>> rows) throws IOException {
         for (List<String> row : rows) {
             writeRow(writer, row);
         }
     }
 
-    private void writeRow(CsvWriter writer, List<String> row) throws IOException {
+    private static void writeRow(CsvWriter writer, List<String> row) throws IOException {
         String[] rowAsArray = (String[]) row.toArray(new String[row.size()]);
 
         writer.writeRecord(rowAsArray);
