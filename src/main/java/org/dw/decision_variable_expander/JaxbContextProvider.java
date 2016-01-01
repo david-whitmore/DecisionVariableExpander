@@ -15,7 +15,7 @@ class JaxbContextProvider implements Provider<JAXBContext> {
         try {
             return JAXBContext.newInstance(DecisionTable.class);
         } catch (JAXBException e) {
-            throw new RuntimeException(e);
+            throw new ConfigurationException("Error creating an " + JAXBContext.class, e);
         }
     }
 }
