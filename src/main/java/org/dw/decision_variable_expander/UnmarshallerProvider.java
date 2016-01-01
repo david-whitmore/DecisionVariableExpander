@@ -24,7 +24,7 @@ class UnmarshallerProvider implements Provider<Unmarshaller> {
         try {
             return context.createUnmarshaller();
         } catch (JAXBException e) {
-            throw new ConfigurationException("Error creating an " + Unmarshaller.class, e);
+            throw new ProviderException("Error creating an " + Unmarshaller.class, e);
         }
     }
 }
